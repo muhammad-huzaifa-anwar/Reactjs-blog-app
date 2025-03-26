@@ -77,7 +77,9 @@ const HomePage = () => {
 
     return (
         <div className="container">
-            <h1 className="text-3xl font-bold mb-6 text-center">Welcome to the Blog App!</h1>
+          <h1 className="text-3xl font-bold mb-6 text-center text-red-500">
+  Welcome to the Blog App!
+</h1>
 
             <div className="mb-6">
                 {user ? (

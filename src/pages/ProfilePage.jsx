@@ -93,7 +93,7 @@ const ProfilePage = () => {
                             Change Password
                         </button>
                     )}
-                    <p>Bio: {user.bio || 'No bio available.'}</p>
+                  
                 </div>
             ) : (
                 <p>User not found</p>

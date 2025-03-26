@@ -1,3 +1,4 @@
+@import "tailwindcss";
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #e6f7ff; /* Light blue background */

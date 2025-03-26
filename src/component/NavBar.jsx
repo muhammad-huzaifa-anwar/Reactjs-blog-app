@@ -9,8 +9,8 @@ const NavBar = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(setUser); // Listen to user auth state
-        return () => unsubscribe(); // Cleanup subscription on unmount
+        const unsubscribe = auth.onAuthStateChanged(setUser);
+        return () => unsubscribe();
     }, []);
 
     const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
@@ -21,49 +21,53 @@ const NavBar = () => {
     };
 
     return (
-        <nav style={{ backgroundColor: '#6A1B9A', padding: '10px', color: 'white' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h1>Blog App</h1>
-                <div style={{ position: 'relative' }}>
+        <nav className="bg-blue-600 text-white shadow-md">
+            <div className="container mx-auto flex justify-between items-center py-4 px-6">
+                <h1 className="text-2xl font-bold">
+                    <span className="text-white">
+                        Blog App
+                    </span>
+                </h1>
+                <div className="relative">
                     {user ? (
                         <>
                             <button
                                 onClick={toggleDropdown}
-                                style={{ backgroundColor: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}
+                                className="flex items-center focus:outline-none"
                             >
                                 <img
                                     src="https://via.placeholder.com/40"
                                     alt="User"
-                                    style={{ borderRadius: '50%', marginRight: '10px' }}
+                                    className="w-10 h-10 rounded-full border-2 border-white"
                                 />
+                                <span className="ml-2 hidden sm:inline-block">{user.email}</span>
                             </button>
                             {dropdownOpen && (
-                                <ul
-                                    style={{
-                                        position: 'absolute',
-                                        top: '100%',
-                                        right: '0',
-                                        backgroundColor: 'white',
-                                        color: 'black',
-                                        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-                                        listStyle: 'none',
-                                        padding: '10px',
-                                        borderRadius: '8px',
-                                        zIndex: 100,
-                                    }}
-                                >
-                                    <li>
-                                        <Link to="/" onClick={toggleDropdown}>
+                                <ul className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg">
+                                    <li className="border-b">
+                                        <Link
+                                            to="/"
+                                            onClick={toggleDropdown}
+                                            className="block px-4 py-2 hover:bg-gray-100"
+                                        >
                                             Home
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link to="/dashboard" onClick={toggleDropdown}>
+                                    <li className="border-b">
+                                        <Link
+                                            to="/dashboard"
+                                            onClick={toggleDropdown}
+                                            className="block px-4 py-2 hover:bg-gray-100"
+                                        >
                                             Dashboard
                                         </Link>
                                     </li>
-                                    <li>
-                                        <Link to="/profile" onClick={toggleDropdown}>
+                                    <li className="border-b">
+                                        <Link
+                                            to="/profile"
+                                            onClick={toggleDropdown}
+                                            className="block px-4 py-2 hover:bg-gray-100"
+                                        >
                                             Profile
                                         </Link>
                                     </li>
@@ -73,7 +77,7 @@ const NavBar = () => {
                                                 handleLogout();
                                                 toggleDropdown();
                                             }}
-                                            style={{ backgroundColor: 'transparent', border: 'none', color: 'inherit', cursor: 'pointer' }}
+                                            className="block w-full text-left px-4 py-2 hover:bg-gray-100"
                                         >
                                             Log Out
                                         </button>
@@ -82,7 +86,10 @@ const NavBar = () => {
                             )}
                         </>
                     ) : (
-                        <Link to="/login" style={{ color: 'white' }}>
+                        <Link
+                            to="/login"
+                            className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-100 transition-colors"
+                        >
                             Login
                         </Link>
                     )}
